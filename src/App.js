@@ -77,7 +77,7 @@ function App() {
                 <h3 className="flex items-center mb-2">
                   <Code className="mr-2" /> Web Stack
                 </h3>
-                <p>React.js • Node.js • MongoDB • Next.js • TypeScript</p>
+                <p>React.js • Node.js • MongoDB • Next.js • JavaScript</p>
               </div>
               <div className="border border-green-400 p-4">
                 <h3 className="flex items-center mb-2">
