@@ -1,7 +1,25 @@
-import React from 'react';
-import { Terminal, Code, Brain, Mail, Github, Linkedin, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Terminal, Code, Brain, Mail, Github, Linkedin, FileText, Menu, X } from 'lucide-react';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrollingDown = prevScrollPos < currentScrollPos;
+      const isScrolledToTop = currentScrollPos < 10;
+
+      setVisible(!isScrollingDown || isScrolledToTop);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
+
   const projects = [
     {
       title: "Farm Anna",
@@ -33,35 +51,79 @@ function App() {
 
   const scrollToSection = (id) => {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    setIsMenuOpen(false);
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-green-400 font-mono">
-      <header className="border-b border-green-400 p-6 sticky top-0 bg-gray-900 z-50">
+      <header 
+        className={`border-b border-green-400 p-6 fixed w-full top-0 bg-gray-900 z-50 transition-transform duration-300 ${
+          visible ? 'translate-y-0' : '-translate-y-full'
+        }`}
+      >
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">&gt; VARUNNN.exe</h1>
-          <nav className="space-x-6">
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-2 hover:text-white transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex space-x-6">
             <button 
               onClick={() => scrollToSection('about')}
-              className="hover:text-white"
+              className="hover:text-white transition-colors"
             >
               ./about
             </button>
             <button 
               onClick={() => scrollToSection('projects')}
-              className="hover:text-white"
+              className="hover:text-white transition-colors"
             >
               ./projects
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="hover:text-white"
+              className="hover:text-white transition-colors"
             >
               ./contact
             </button>
           </nav>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <nav className="md:hidden mt-4 border-t border-green-400 pt-4">
+            <div className="flex flex-col space-y-4">
+              <button 
+                onClick={() => scrollToSection('about')}
+                className="hover:text-white transition-colors text-left px-2 py-1 hover:bg-gray-800 rounded"
+              >
+                ./about
+              </button>
+              <button 
+                onClick={() => scrollToSection('projects')}
+                className="hover:text-white transition-colors text-left px-2 py-1 hover:bg-gray-800 rounded"
+              >
+                ./projects
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="hover:text-white transition-colors text-left px-2 py-1 hover:bg-gray-800 rounded"
+              >
+                ./contact
+              </button>
+            </div>
+          </nav>
+        )}
       </header>
+
+      {/* Add padding to prevent content from hiding under fixed header */}
+      <div className="h-24" />
 
       <main className="max-w-4xl mx-auto p-6 space-y-24">
         <section id="about" className="space-y-6 pt-6">
@@ -77,13 +139,13 @@ function App() {
                 <h3 className="flex items-center mb-2">
                   <Code className="mr-2" /> Web Stack
                 </h3>
-                <p>React.js • Node.js • MongoDB • Next.js • JavaScript</p>
+                <p>React.js • Node.js • MongoDB • Next.js • TypeScript</p>
               </div>
               <div className="border border-green-400 p-4">
                 <h3 className="flex items-center mb-2">
                   <Brain className="mr-2" /> ML Stack
                 </h3>
-                <p>Python • TensorFlow • PyTorch • scikit-learn</p>
+                <p>Python • TensorFlow • PyTorch • scikit-learn • NLTK</p>
               </div>
             </div>
           </div>
@@ -116,27 +178,14 @@ function App() {
               <Mail className="mr-2" /> Contact Interface
             </h2>
             <div className="space-y-4">
-              <a 
-                href="https://github.com/varun4-here" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center hover:text-white"
-              >
-                <Github className="mr-2" /> github.com/varun4-here
+              <a href="#" className="flex items-center hover:text-white">
+                <Github className="mr-2" /> github.com/varunnn
               </a>
-              <a 
-                href="https://www.linkedin.com/in/varunnn4here/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center hover:text-white"
-              >
-                <Linkedin className="mr-2" /> linkedin.com/in/varunnn4here
+              <a href="#" className="flex items-center hover:text-white">
+                <Linkedin className="mr-2" /> linkedin.com/in/varunnn
               </a>
-              <a 
-                href="mailto:contact@varunnn.co" 
-                className="flex items-center hover:text-white"
-              >
-                <Mail className="mr-2" /> contact@varunnn.co
+              <a href="#" className="flex items-center hover:text-white">
+                <Mail className="mr-2" /> varun@example.com
               </a>
               <a href="#" className="flex items-center hover:text-white">
                 <FileText className="mr-2" /> Download Resume
