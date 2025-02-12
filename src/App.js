@@ -185,7 +185,7 @@ function App() {
                 <Linkedin className="mr-2" /> linkedin.com/in/varunnn
               </a>
               <a href="#" className="flex items-center hover:text-white">
-                <Mail className="mr-2" /> varun@example.com
+                <Mail className="mr-2" /> contact@varunnn.co
               </a>
               <a href="#" className="flex items-center hover:text-white">
                 <FileText className="mr-2" /> Download Resume
