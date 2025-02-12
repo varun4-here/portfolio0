@@ -178,13 +178,26 @@ function App() {
               <Mail className="mr-2" /> Contact Interface
             </h2>
             <div className="space-y-4">
-              <a href="#" className="flex items-center hover:text-white">
-                <Github className="mr-2" /> github.com/varunnn
+              <a 
+                href="https://github.com/varun4-here" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center hover:text-white"
+              >
+                <Github className="mr-2" /> github.com/varun4-here
               </a>
-              <a href="#" className="flex items-center hover:text-white">
-                <Linkedin className="mr-2" /> linkedin.com/in/varunnn
+              <a 
+                href="https://www.linkedin.com/in/varunnn4here/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center hover:text-white"
+              >
+                <Linkedin className="mr-2" /> linkedin.com/in/varunnn4here
               </a>
-              <a href="#" className="flex items-center hover:text-white">
+              <a 
+                href="mailto:contact@varunnn.co" 
+                className="flex items-center hover:text-white"
+              >
                 <Mail className="mr-2" /> contact@varunnn.co
               </a>
               <a href="#" className="flex items-center hover:text-white">
