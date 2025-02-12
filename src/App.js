@@ -139,13 +139,13 @@ function App() {
                 <h3 className="flex items-center mb-2">
                   <Code className="mr-2" /> Web Stack
                 </h3>
-                <p>React.js • Node.js • MongoDB • Next.js • TypeScript</p>
+                <p>•React.js •Node.js •MongoDB •Next.js •TypeScript</p>
               </div>
               <div className="border border-green-400 p-4">
                 <h3 className="flex items-center mb-2">
                   <Brain className="mr-2" /> ML Stack
                 </h3>
-                <p>Python • TensorFlow • PyTorch • scikit-learn • NLTK</p>
+                <p>•Python •TensorFlow •PyTorch •scikit-learn •NLTK</p>
               </div>
             </div>
           </div>
