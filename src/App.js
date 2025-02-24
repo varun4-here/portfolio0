@@ -122,7 +122,6 @@ function App() {
         )}
       </header>
 
-      {/* Add padding to prevent content from hiding under fixed header */}
       <div className="h-24" />
 
       <main className="max-w-4xl mx-auto p-6 space-y-24">
